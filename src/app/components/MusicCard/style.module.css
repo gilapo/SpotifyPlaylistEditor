@@ -1,0 +1,40 @@
+.card {
+    margin: 20px auto;
+    padding: 23px;
+    background-color: rgb(44, 44, 44);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.albumImage{
+    border-radius: 10px;
+}
+.playSection{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.songTitle{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0px 0px 0px;
+}
+
+.songArtist{
+    font-weight: 300;
+    font-size: 15px;
+    margin: 0px 0px 10px 0px;
+}
+.songAlbum{
+    color: rgb(201, 201, 201);
+    font-size: 12px;
+    margin: 0px 0px 10px 0px ;
+}
+
+.btnPlay{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin-right: 10px;
+    background-color: #09d109;
+}

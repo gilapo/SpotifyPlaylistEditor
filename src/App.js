@@ -1,12 +1,10 @@
 import React from "react";
-import "./App.css";
-import { Form, Playlist } from "./app";
+import Home from "./app/pages/Home";
 
 const App = () => {
     return (
         <div className="root-container">
-            <Form />
-            <Playlist />
+            <Home />
         </div>
     );
 };

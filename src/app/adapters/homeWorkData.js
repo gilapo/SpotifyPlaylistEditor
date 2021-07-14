@@ -77,4 +77,4 @@ const homeWorkData = {
     uri: "spotify:track:3z8h0TU7ReDPLIbEnYhWZb",
 };
 
-export default homeWorkData;
+export { homeWorkData };

@@ -1,18 +1,14 @@
 import React from "react";
-import { homeWorkData } from "../../adapters";
 import style from "./style.module.css";
 
-const Playlist = () => {
-    const data = homeWorkData;
+const Playlist = ({ title, album, artist, images }) => {
     return (
-        <div>
-            <div className={style.container}>
-                <img src={data.album.images[1].url} alt="" />
-                <p>{data.name}</p>
-                <p>{data.artists[0].name}</p>
-                <p>{data.album.name}</p>
-                <button>cari</button>
-            </div>
+        <div className={style.container}>
+            <img src={images.url} alt="" />
+            <p>{title}</p>
+            <p>{artist}</p>
+            <p>{album}</p>
+            <button>cari</button>
         </div>
     );
 };

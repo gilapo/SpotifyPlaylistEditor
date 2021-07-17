@@ -1,26 +1,27 @@
 import React from "react";
 import style from "./style.module.css";
-import { homeWorkData } from "../../adapters";
-import { MusicCard } from "../../components";
+import { trackData } from "../../adapters";
+import { TrackList } from "../../components";
 
 const Home = () => {
-    const {
-        album: {
-            name: albumName,
-            artists: [{ name: artist }],
-            images: [, mediumImage],
-        },
-        name: songTitle,
-    } = homeWorkData;
+    const tracks = trackData.map((track, index) => {
+        return (
+            <TrackList
+                key={index}
+                title={track.name}
+                album={track.album.name}
+                artist={track.artists[0].name}
+                images={track.album.images[2].url}
+            />
+        );
+    });
+
     return (
         <div className={style.container}>
-            <h1>Create Playlist</h1>
-            <MusicCard
-                title={songTitle}
-                album={albumName}
-                artist={artist}
-                images={mediumImage}
-            />
+            <div className={style.trackContainer}>
+                <h1>Your Tracks</h1>
+                {tracks}
+            </div>
         </div>
     );
 };

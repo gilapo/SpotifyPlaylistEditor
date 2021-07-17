@@ -78,3 +78,14 @@ const homeWorkData = {
 };
 
 export { homeWorkData };
+
+// const [
+//     {
+//         album: {
+//             name: albumName,
+//             artists: [{ name: artist }],
+//             images: [, mediumImage],
+//         },
+//         name: songTitle,
+//     },
+// ] = homeWorkData;

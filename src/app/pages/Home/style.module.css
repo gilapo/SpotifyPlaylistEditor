@@ -1,7 +1,16 @@
 h1{
     margin: 20px auto;
 }
-
+.searchContainer{
+    flex-direction: column;
+    display: flex;
+    margin: 10px auto;
+    border: 1px solid #727272;
+    background-color: rgb(44, 44, 44);
+    border-radius: 15px;
+    width: 50%;
+    padding: 20px;
+}
 .trackContainer{
     flex-direction: column;
     display: flex;

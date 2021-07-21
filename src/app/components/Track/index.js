@@ -27,3 +27,21 @@ const TrackList = ({ title, album, artist, images }) => {
 };
 
 export default TrackList;
+
+/*
+
+call the track in this way inside home page
+
+const tracks = trackData.map((track, index) => {
+        return (
+            <TrackList
+                key={index}
+                title={track.name}
+                album={track.album.name}
+                artist={track.artists[0].name}
+                images={track.album.images[2].url}
+            />
+        );
+    });
+
+*/

@@ -1,2 +1,5 @@
 import playButton from "./play.svg";
-export { playButton };
+import searchButton from "./search.svg";
+import selectButton from "./select.svg";
+import diselectButton from "./diselect.svg";
+export { playButton, searchButton, selectButton, diselectButton };

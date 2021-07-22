@@ -5,9 +5,11 @@ import { Search, Auth } from "../../components";
 const Home = () => {
     return (
         <div className={style.container}>
+            <div className={style.authContainer}>
+                <Auth />
+            </div>
             <div className={style.searchContainer}>
                 <Search />
-                <Auth />
             </div>
         </div>
     );

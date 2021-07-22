@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./style.module.css";
 
 const Auth = () => {
     const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
@@ -10,7 +11,9 @@ const Auth = () => {
 
     return (
         <div>
-            <button onClick={loginHandler}>login</button>
+            <button className={style.btnLogin} onClick={loginHandler}>
+                Login
+            </button>
         </div>
     );
 };

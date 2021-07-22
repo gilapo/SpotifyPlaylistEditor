@@ -1,0 +1,11 @@
+.btnLogin{
+    background-color: rgb(11, 177, 11);
+    color: aliceblue;
+    width: 50px;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+}
+.btnLogin:active{
+    background-color: green;
+}

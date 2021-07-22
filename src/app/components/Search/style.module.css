@@ -1,0 +1,21 @@
+.searchSection{
+    display: flex;
+}
+.searchBar{
+    width: 80%;
+    margin: 0px auto;
+    height: 20px;
+    border-radius: 50px;
+    border: none;
+    background-color: black;
+    color: aliceblue;
+    padding: 10px;
+}
+
+.searchBar:focus{
+    border: 1px solid cornflowerblue;
+}
+h4{
+    margin-top: 50px;
+    margin-bottom: 5px;
+}

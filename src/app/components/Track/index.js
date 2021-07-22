@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./style.module.css";
-import { playButton } from "../../assets";
+import { playButton, selectButton, diselectButton } from "../../assets";
 const TrackList = ({ title, album, artist, images }) => {
+    const [isActive, setIsActive] = useState(false);
     return (
         <div>
             <div className={style.trackContent}>
@@ -17,6 +18,17 @@ const TrackList = ({ title, album, artist, images }) => {
                     </div>
                 </div>
                 <div className={style.trackBtnSection}>
+                    <button
+                        className={style.selectBtn}
+                        onClick={() => {
+                            setIsActive(isActive ? false : true);
+                        }}
+                    >
+                        <img
+                            src={isActive ? diselectButton : selectButton}
+                            alt=""
+                        />
+                    </button>
                     <button className={style.trackBtn}>
                         <img src={playButton} alt="" />
                     </button>

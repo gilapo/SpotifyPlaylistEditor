@@ -7,6 +7,7 @@ const Search = () => {
     const [accessToken, setAccessToken] = useState();
     const [search, setSearch] = useState("");
     const [data, setData] = useState("");
+    const [searchHistory, setSearchHistory] = useState([]);
 
     const getReturnedParamsFromSpotifyAuth = (hash) => {
         const stringAfterHashtag = hash.substring(1);
@@ -39,7 +40,7 @@ const Search = () => {
     const searchHandler = async () => {
         try {
             const result = await axios.get(
-                `https://api.spotify.com/v1/search?q=${search}&type=album&limit=7`,
+                `https://api.spotify.com/v1/search?q=${search}&type=album&limit=2`,
                 {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
@@ -48,7 +49,7 @@ const Search = () => {
             );
 
             const resultContainer = result.data.albums.items;
-            console.log(resultContainer);
+            //console.log(resultContainer);
             setData(
                 resultContainer.map((result) => (
                     <TrackList
@@ -63,17 +64,28 @@ const Search = () => {
             console.error(error);
         }
     };
+
+    const history = () => {
+        setSearchHistory(data);
+    };
+
     return (
         <div>
-            <input
-                type="text"
-                value={search}
-                className={style.inputSearch}
-                onChange={handleChange}
-            />
-            <button onClick={searchHandler}>Cari</button>
-            {/* <button onClick={loginHandler}>login</button> */}
+            <div className={style.searchSection}>
+                <input
+                    className={style.searchBar}
+                    type="text"
+                    value={search}
+                    onChange={handleChange}
+                    placeholder="Cari.."
+                    onKeyPress={(e) =>
+                        e.key === "Enter" && searchHandler() && history()
+                    }
+                />
+            </div>
             {data}
+            <h4>Previous Search</h4> <hr />
+            {searchHistory}
         </div>
     );
 };

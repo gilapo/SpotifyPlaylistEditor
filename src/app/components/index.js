@@ -1,4 +1,4 @@
-import Form from "./form";
+import Form from "./Form";
 import MusicCard from "./MusicCard";
 import Playlist from "./playlist";
 import TrackList from "./Track";

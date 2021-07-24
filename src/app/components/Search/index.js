@@ -1,37 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import style from "./style.module.css";
 import TrackList from "../Track";
 
-const Search = () => {
-    const [accessToken, setAccessToken] = useState();
+const Search = ({ accessToken }) => {
     const [search, setSearch] = useState("");
     const [data, setData] = useState("");
     const [searchHistory, setSearchHistory] = useState([]);
-
-    const getReturnedParamsFromSpotifyAuth = (hash) => {
-        const stringAfterHashtag = hash.substring(1);
-        const paramsInUrl = stringAfterHashtag.split("&");
-        const paramsSplitUp = paramsInUrl.reduce(
-            (accumulater, currentValue) => {
-                const [key, value] = currentValue.split("=");
-                accumulater[key] = value;
-                return accumulater;
-            },
-            {}
-        );
-
-        return paramsSplitUp;
-    };
-    useEffect(() => {
-        if (window.location.hash) {
-            //const { access_token, expires_in, token_type }
-            const { access_token } = getReturnedParamsFromSpotifyAuth(
-                window.location.hash
-            );
-            setAccessToken(access_token);
-        }
-    }, []);
 
     const handleChange = (event) => {
         setSearch(event.target.value);

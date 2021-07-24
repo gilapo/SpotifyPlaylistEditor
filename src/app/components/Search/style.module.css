@@ -1,21 +1,15 @@
-.searchSection{
-    display: flex;
-}
+
 .searchBar{
-    width: 80%;
+    width:100%;
     margin: 0px auto;
-    height: 20px;
+    height: 30px;
     border-radius: 50px;
-    border: none;
-    background-color: black;
+    border: 1px solid #585858;
+    background-color: rgb(36, 36, 36);
     color: aliceblue;
     padding: 10px;
 }
 
-.searchBar:focus{
-    border: 1px solid cornflowerblue;
-}
 h4{
     margin-top: 50px;
-    margin-bottom: 5px;
 }

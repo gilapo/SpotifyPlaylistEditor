@@ -34,6 +34,7 @@ const TrackList = ({ title, album, artist, images }) => {
                     </button>
                 </div>
             </div>
+            <button>tambahkan</button>
         </div>
     );
 };

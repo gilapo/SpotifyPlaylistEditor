@@ -5,25 +5,23 @@ h1{
 .container{
     display: flex;
     flex-direction: column;
+    margin: 0px auto;
+}
+
+.headerSection{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    justify-content: center;
+    width: 80%;
 }
 
 .searchContainer{
-    margin: 10px auto;
-    border: 1px solid #727272;
-    background-color: rgb(44, 44, 44);
+    order: -1;
     border-radius: 15px;
-    width: 50%;
-    padding: 20px;
-}
-.trackContainer{
-    margin: 10px auto;
-    border: 1px solid #727272;
-    background-color: rgb(44, 44, 44);
-    border-radius: 15px;
-    width: 50%;
-    padding: 20px;
+    width: 70%;
 }
 
 .authContainer{
-    margin: 10px auto;
+    margin-left: 20px;
 }

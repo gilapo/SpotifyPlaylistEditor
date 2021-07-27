@@ -1,11 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./style.module.css";
+import axios from "axios";
+import { useSelector } from "react-redux";
 import { playButton, selectButton, diselectButton } from "../../assets";
-const TrackList = ({ title, album, artist, images }) => {
-    const [isActive, setIsActive] = useState(false);
+const TrackList = ({ id, title, album, artist, images, playlist }) => {
+    const [isSelected, setIsSelected] = useState(false);
+    const [addedTracks, setAddedTracks] = useState(); // its only can add 1 music at the time, because added tracks doesnt recive multiple state value, fix it later, go back to sleep
+    const dummyPlaylistId = playlist.items[0].id;
+
+    const reduxAccessToken = useSelector(
+        (state) => state.accessToken.currentAccessToken
+    );
+
+    const addPlaylistHandler = async () => {
+        try {
+            const response = await axios({
+                method: "post",
+                url: `https://api.spotify.com/v1/playlists/${dummyPlaylistId}/tracks`,
+                data: {
+                    uris: [`spotify:track:${addedTracks}`],
+                    position: 0,
+                },
+                headers: {
+                    Authorization: `Bearer ${reduxAccessToken}`,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            });
+
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        if (isSelected) {
+            setAddedTracks(id);
+        } else {
+            setAddedTracks("");
+        }
+    }, [isSelected]);
+
+    console.log(isSelected + " " + id);
+    console.log(addedTracks);
     return (
         <div>
-            <div className={style.trackContent}>
+            <div className={style.trackContent} id={id}>
                 <div className={style.trackSection}>
                     <img
                         className={style.trackImage}
@@ -21,11 +61,11 @@ const TrackList = ({ title, album, artist, images }) => {
                     <button
                         className={style.selectBtn}
                         onClick={() => {
-                            setIsActive(isActive ? false : true);
+                            setIsSelected(isSelected ? false : true);
                         }}
                     >
                         <img
-                            src={isActive ? diselectButton : selectButton}
+                            src={isSelected ? diselectButton : selectButton}
                             alt=""
                         />
                     </button>
@@ -34,27 +74,9 @@ const TrackList = ({ title, album, artist, images }) => {
                     </button>
                 </div>
             </div>
-            <button>tambahkan</button>
+            <button onClick={addPlaylistHandler}>tambahkan</button>
         </div>
     );
 };
 
 export default TrackList;
-
-/*
-
-call the track in this way inside home page
-
-const tracks = trackData.map((track, index) => {
-        return (
-            <TrackList
-                key={index}
-                title={track.name}
-                album={track.album.name}
-                artist={track.artists[0].name}
-                images={track.album.images[2].url}
-            />
-        );
-    });
-
-*/

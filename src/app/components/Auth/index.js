@@ -2,13 +2,14 @@ import React from "react";
 import style from "./style.module.css";
 import { loginButton, logoutButton, defaultImage } from "../../assets";
 
-const Auth = ({ accessToken, getProfile, profile, isLoggedIn }) => {
+const Auth = ({ profile, isLoggedIn }) => {
     //const [isLoggedIn, setIsLoggedIn] = useState(false);
     const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+    const scope = `user-read-private%20playlist-modify-private%20playlist-read-private`;
     const url = "http://localhost:3000/";
 
     const loginHandler = () => {
-        window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${url}&scope=user-read-private%20user-read-email%20playlist-modify-private&response_type=token&state=123`;
+        window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${url}&scope=${scope}&response_type=token&state=123`;
     };
 
     return (

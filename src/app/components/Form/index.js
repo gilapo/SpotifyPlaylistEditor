@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { useState } from "react";
 import style from "./style.module.css";
+import { useSelector } from "react-redux";
 
-const Form = ({ accessToken, id }) => {
+const Form = ({ id }) => {
     const [form, setForm] = useState({
         title: "",
         description: "",
     });
+    const reduxAccessToken = useSelector(
+        (state) => state.accessToken.currentAccessToken
+    );
 
     const handleForm = async (event) => {
         console.log(`https://api.spotify.com/v1/users/${id}/playlists`);
@@ -25,7 +29,7 @@ const Form = ({ accessToken, id }) => {
                     collaborative: false,
                 },
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${reduxAccessToken}`,
                 },
             });
             console.log(result);

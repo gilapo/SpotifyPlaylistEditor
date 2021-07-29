@@ -6,6 +6,7 @@ import { playButton, selectButton, diselectButton } from "../../assets";
 const TrackList = ({ id, title, album, artist, images, playlist }) => {
     const [isSelected, setIsSelected] = useState(false);
     const [addedTracks, setAddedTracks] = useState(); // its only can add 1 music at the time, because added tracks doesnt recive multiple state value, fix it later, go back to sleep
+
     const dummyPlaylistId = playlist.items[0].id;
 
     const reduxAccessToken = useSelector(
@@ -39,6 +40,7 @@ const TrackList = ({ id, title, album, artist, images, playlist }) => {
         } else {
             setAddedTracks("");
         }
+        // eslint-disable-next-line
     }, [isSelected]);
 
     console.log(isSelected + " " + id);

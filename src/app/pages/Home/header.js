@@ -8,7 +8,6 @@ import { actionCreators } from "../../redux";
 
 const Header = () => {
     //const [accessToken, setAccessToken] = useState();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [profile, setProfile] = useState({
         id: "",
         name: "",
@@ -16,13 +15,20 @@ const Header = () => {
         images: "",
     });
     const [playlist, setPlaylist] = useState("");
+
     /////////=======
     const reduxAccessToken = useSelector(
         (state) => state.accessToken.currentAccessToken
     );
+    const reduxIsloggedIn = useSelector(
+        (state) => state.isLoggedIn.currentIsLoggedIn
+    );
     const dispatch = useDispatch();
-    const { getAccessToken } = bindActionCreators(actionCreators, dispatch);
-    console.log(reduxAccessToken);
+    const { getAccessToken, getIsLoggedIn } = bindActionCreators(
+        actionCreators,
+        dispatch
+    );
+    //console.log(reduxIsloggedIn);
 
     /////===========
 
@@ -40,23 +46,30 @@ const Header = () => {
 
         return paramsSplitUp;
     };
-    useEffect(() => {
+    useEffect(async () => {
         if (window.location.hash) {
             //const { access_token, expires_in, token_type }
             const { access_token } = getReturnedParamsFromSpotifyAuth(
                 window.location.hash
             );
-            //setAccessToken(access_token);
-            getAccessToken(access_token);
-        }
-    }, []);
+            localStorage.clear();
+            localStorage.setItem("accessToken", access_token);
+            //localStorage.clear();
 
+            await getAccessToken(localStorage.getItem("accessToken"));
+
+            //setAccessToken(access_token);
+        }
+        // eslint-disable-next-line
+    }, []);
+    console.log(reduxIsloggedIn);
     useEffect(() => {
         if (reduxAccessToken !== undefined) {
-            setIsLoggedIn(true);
+            getIsLoggedIn(true);
         } else {
-            setIsLoggedIn(false);
+            getIsLoggedIn(false);
         }
+        // eslint-disable-next-line
     }, [reduxAccessToken]);
 
     useEffect(() => {
@@ -64,7 +77,13 @@ const Header = () => {
             getProfile();
             getPlaylist();
         }
+        // eslint-disable-next-line
     }, [reduxAccessToken]);
+
+    useEffect(() => {
+        if (reduxIsloggedIn) {
+        }
+    });
 
     const getProfile = async () => {
         console.log("masuk");
@@ -109,7 +128,7 @@ const Header = () => {
                         // accessToken={accessToken}
                         getProfile={getProfile}
                         profile={profile}
-                        isLoggedIn={isLoggedIn}
+                        isLoggedIn={reduxIsloggedIn}
                     />
                 </div>
                 <div className={style.searchContainer}>
@@ -120,10 +139,7 @@ const Header = () => {
                 </div>
             </div>
             <div className={style.formContainer}>
-                <Form
-                    // accessToken={accessToken}
-                    id={profile.id}
-                />
+                <Form id={profile.id} />
             </div>
         </div>
     );

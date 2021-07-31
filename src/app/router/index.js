@@ -3,9 +3,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Redirect,
 } from "react-router-dom";
-import { Playlist } from "../components";
 import Home from "../pages/Home";
 import { useEffect, useState } from "react";
 

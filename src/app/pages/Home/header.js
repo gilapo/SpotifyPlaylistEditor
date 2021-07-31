@@ -46,20 +46,24 @@ const Header = () => {
 
         return paramsSplitUp;
     };
-    useEffect(async () => {
-        if (window.location.hash) {
-            //const { access_token, expires_in, token_type }
-            const { access_token } = getReturnedParamsFromSpotifyAuth(
-                window.location.hash
-            );
-            localStorage.clear();
-            localStorage.setItem("accessToken", access_token);
-            //localStorage.clear();
+    useEffect( () => {
+        async function fetchData(){
 
-            await getAccessToken(localStorage.getItem("accessToken"));
-
-            //setAccessToken(access_token);
+            if (window.location.hash) {
+                //const { access_token, expires_in, token_type }
+                const { access_token } = getReturnedParamsFromSpotifyAuth(
+                    window.location.hash
+                );
+                localStorage.clear();
+                localStorage.setItem("accessToken", access_token);
+                //localStorage.clear();
+    
+                await getAccessToken(localStorage.getItem("accessToken"));
+    
+                //setAccessToken(access_token);
+            }
         }
+        fetchData()
         // eslint-disable-next-line
     }, []);
     console.log(reduxIsloggedIn);
@@ -80,10 +84,10 @@ const Header = () => {
         // eslint-disable-next-line
     }, [reduxAccessToken]);
 
-    useEffect(() => {
-        if (reduxIsloggedIn) {
-        }
-    });
+    // useEffect(() => {
+    //     if (reduxIsloggedIn) {
+    //     }
+    // });
 
     const getProfile = async () => {
         console.log("masuk");

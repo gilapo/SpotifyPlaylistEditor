@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import style from "./style.module.css";
 import { loginButton, logoutButton, defaultImage } from "../../assets";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../redux";
 
@@ -11,9 +11,9 @@ const Auth = ({ profile, isLoggedIn }) => {
     const scope = `user-read-private%20playlist-modify-private%20playlist-read-private`;
     const url = "http://localhost:3000/";
 
-    const reduxAccessToken = useSelector(
-        (state) => state.accessToken.currentAccessToken
-    );
+    // const reduxAccessToken = useSelector(
+    //     (state) => state.accessToken.currentAccessToken
+    // );
     const dispatch = useDispatch();
     const { getAccessToken } = bindActionCreators(actionCreators, dispatch);
 

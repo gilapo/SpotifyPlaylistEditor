@@ -14,7 +14,6 @@ const Form = ({ id }) => {
 
     const handleForm = async (event) => {
         console.log(`https://api.spotify.com/v1/users/${id}/playlists`);
-        //https://api.spotify.com/v1/users/z8c9e9v24nt73mfclhzpakxyl/playlists
         console.log(form.title);
         console.log(form.description);
         event.preventDefault();
@@ -37,23 +36,6 @@ const Form = ({ id }) => {
             console.error(error);
         }
     };
-
-    // post(
-    //     `https://api.spotify.com/v1/users/${id}/playlists`,
-    //     {
-    //         data: {
-    //             name: form.title,
-    //             public: false,
-    //             collaborative: false,
-    //             description: form.description,
-    //         },
-    //     },
-    //     {
-    //         headers: {
-    //             Authorization: `Bearer ${accessToken}`,
-    //         },
-    //     }
-
     const handleInput = (event) => {
         const { name, value } = event.target;
         setForm({ ...form, [name]: value });

@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import style from "./style.module.css";
 import { useSelector } from "react-redux";
+//Warning: findDOMNode is deprecated in StrictMode
+import "semantic-ui-css/semantic.min.css";
+import { Form as SemanticForm } from "semantic-ui-react";
 
 const Form = ({ id }) => {
     const [form, setForm] = useState({
@@ -11,7 +14,6 @@ const Form = ({ id }) => {
     const reduxAccessToken = useSelector(
         (state) => state.accessToken.currentAccessToken
     );
-
     const handleForm = async (event) => {
         console.log(`https://api.spotify.com/v1/users/${id}/playlists`);
         console.log(form.title);
@@ -44,7 +46,35 @@ const Form = ({ id }) => {
         <div>
             <div className={style.container}>
                 <h1>Create Playlist</h1>
-                <form onSubmit={handleForm}>
+
+                <SemanticForm onSubmit={handleForm}>
+                    <SemanticForm.Group widths="equal">
+                        <SemanticForm.Input
+                            fluid
+                            label="Nama Playlist"
+                            placeholder="Nama Playlist"
+                            id="title"
+                            type="text"
+                            name="title"
+                            value={form.title}
+                            onChange={handleInput}
+                        />
+                    </SemanticForm.Group>
+
+                    <SemanticForm.TextArea
+                        label="About"
+                        id="description"
+                        type="text"
+                        name="description"
+                        value={form.description}
+                        onChange={handleInput}
+                        placeholder="masukkan deskripsi playlist anda"
+                    />
+
+                    <SemanticForm.Button>Submit</SemanticForm.Button>
+                </SemanticForm>
+
+                {/* <form onSubmit={handleForm}>
                     <label htmlFor="title">Judul </label>
                     <input
                         id="title"
@@ -52,8 +82,8 @@ const Form = ({ id }) => {
                         name="title"
                         value={form.title}
                         onChange={handleInput}
-                    />{" "}
-                    <br />
+                        placeholder="judul..."
+                    />
                     <label htmlFor="description">Deskripsi </label>
                     <input
                         id="description"
@@ -64,7 +94,7 @@ const Form = ({ id }) => {
                     />{" "}
                     <br />
                     <input type="submit" value="submit" />
-                </form>
+                </form> */}
             </div>
         </div>
     );

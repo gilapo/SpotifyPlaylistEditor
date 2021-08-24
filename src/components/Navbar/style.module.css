@@ -1,0 +1,27 @@
+.navberContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    border-bottom: 1px solid #4a4a4a;
+}
+.profileContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.imageContainer {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.imageContainer img {
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+}
+.userNameContainer {
+    margin-right: 10px;
+}

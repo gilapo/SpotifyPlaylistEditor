@@ -1,0 +1,62 @@
+.trackContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    width: 80%;
+}
+.coreSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 40%;
+}
+.imageSection {
+    border-radius: 8;
+}
+.titleSection {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.trackTitle {
+    margin: 0 10px;
+    padding: 0;
+    font-size: 15px;
+}
+.trackArtist {
+    margin: 0 10px;
+    padding: 0;
+    font-size: 12px;
+    font-weight: 200;
+}
+.trackAlbum {
+    margin-right: 20px;
+}
+.trackDuration {
+    width: 20%;
+    font-size: 12px;
+    font-weight: 100;
+}
+.detailSection {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.detailSection p {
+    font-size: 12px;
+    font-weight: 100;
+}
+.trackLike {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.trackLike:active {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    color: red;
+}

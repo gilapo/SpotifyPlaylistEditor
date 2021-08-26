@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import style from "./style.module.css";
 import { BiHomeAlt, BiSearch, BiCollection } from "react-icons/bi";
-import { logo } from "../../assets";
+//import { logo } from "../../assets";
 //import { colors } from "../../utils/colorUtils";
 
 const SideBar = () => {
@@ -11,8 +11,10 @@ const SideBar = () => {
     return (
         <div className={style.sideBarContainer}>
             <div className={style.aplicationIcon}>
-                <img src={logo} alt="" className={style.logoIcon} />
-                <p>Play Maker</p>
+                {/* <img src={logo} alt="" className={style.logoIcon} /> */}
+                <p>
+                    PLAYLIST <span>&trade;</span>
+                </p>
             </div>
             {location.pathname === "/login" ? null : (
                 <ul className={style.menuList}>

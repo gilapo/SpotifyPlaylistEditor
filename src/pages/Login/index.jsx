@@ -5,7 +5,9 @@ import { setToken } from "../../redux/features/accessTokenSlice";
 import { setExpireIn } from "../../redux/features/tokenExpireSlice";
 import { spotifyUtils } from "../../utils/spotifyUtils";
 import { Redirect } from "react-router-dom";
-import styles from "./style.module.css";
+import { RiSpotifyFill } from "react-icons/ri";
+import style from "./style.module.css";
+
 const Login = ({ authStatus }) => {
     const dispatch = useDispatch();
 
@@ -56,11 +58,29 @@ const Login = ({ authStatus }) => {
         return <Redirect to="/home" />;
     }
     return (
-        <div className={styles.login_container}>
-            <h1>This is Login Pages</h1>
-            <button onClick={loginHandler}>Login</button>
+        <div className={style.loginContainer}>
+            <div className={style.buttonContainer}>
+                <div className={style.aplicationIcon}>
+                    {/* <img src={logo} alt="" className={style.logoIcon} /> */}
+                    <p>
+                        PLAYLIST <span>&trade;</span>
+                    </p>
+                </div>
+                <div className={style.loginBtn} onClick={loginHandler}>
+                    <RiSpotifyFill />
+                    <p>Login With Spotify</p>
+                </div>
+            </div>
         </div>
     );
 };
 
 export default Login;
+// Photo by{" "}
+//                 <a href="https://unsplash.com/@spencerimbrockphoto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+//                     Spencer Imbrock
+//                 </a>{" "}
+//                 on{" "}
+//                 <a href="https://unsplash.com/s/photos/music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+//                     Unsplash
+//                 </a>

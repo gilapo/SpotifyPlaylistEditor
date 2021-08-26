@@ -5,6 +5,7 @@ import tracksSlice from "./features/tracksSlice";
 import userSlice from "./features/userSlice";
 import tokenExpireSlice from "./features/tokenExpireSlice";
 import currentPlaylistSlice from "./features/currentPlaylistSlice";
+import addingSongSlice from "./features/addingSongSlice";
 
 const store = configureStore({
     // here we define our reducer
@@ -16,6 +17,7 @@ const store = configureStore({
         user: userSlice,
         expireIn: tokenExpireSlice,
         currentPlaylist: currentPlaylistSlice,
+        addingSong: addingSongSlice,
     },
 });
 

@@ -4,7 +4,6 @@ import axios from "axios";
 import { setUserData } from "../../redux/features/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/features/authenticationSlice";
-import { BiCaretDown } from "react-icons/bi";
 
 const Navbar = () => {
     const accessToken = useSelector((state) => state.accessToken.accessToken);
@@ -63,8 +62,9 @@ const Navbar = () => {
                     <img src={userData.image.url} alt="" />
                 </div>
                 <p className={style.userNameContainer}>{userData.name}</p>
-                <BiCaretDown />
-                <button onClick={logoutHandler}>logout</button>
+                <div className={style.logoutBtn} onClick={logoutHandler}>
+                    <p>Logout</p>
+                </div>
             </div>
         </div>
     );

@@ -3,6 +3,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { Tracks } from "..";
 import { miliSecondToMinutes } from "../../helper/timehelper";
+import { BiSearch } from "react-icons/bi";
+import style from "./style.module.css";
 const SearchBar = ({ action }) => {
     const [keyword, setKeyword] = useState("");
     const [searcResult, setSearchresult] = useState("");
@@ -46,11 +48,13 @@ const SearchBar = ({ action }) => {
 
     return (
         <div>
+            <BiSearch className={style.searchIcon} color="black" />
             <form onSubmit={handleSearch}>
                 <input
                     type="text"
                     onChange={(event) => setKeyword(event.target.value)}
-                    required
+                    placeholder="Cari Lagu atau Podcast"
+                    className={style.searchInput}
                 />
             </form>
             {searcResult}

@@ -1,7 +1,21 @@
 import React from "react";
 import style from "./style.module.css";
 import { defaultImage } from "../../assets";
-const CustomCard = ({ image, title, description, goDetail, id }) => {
+
+type Card = {
+    image: string;
+    title: string;
+    description: string;
+    goDetail: (id: string) => {};
+    id: string;
+};
+const CustomCard: React.FunctionComponent<Card> = ({
+    image,
+    title,
+    description,
+    goDetail,
+    id,
+}) => {
     return (
         <div className={style.cardContainer} onClick={() => goDetail(id)}>
             <div className={style.imageSection}>

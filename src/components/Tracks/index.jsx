@@ -3,8 +3,9 @@ import styles from "./style.module.css";
 import { actions } from "../../utils/actionUtils";
 import { BiHeart, BiListPlus, BiListCheck } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { setAddStatus } from "../../redux/features/addingSongSlice";
 
 const Tracks = ({
     image,
@@ -17,25 +18,33 @@ const Tracks = ({
     index,
     id,
 }) => {
+    const dispatch = useDispatch();
     const [addedTracks, setAddedTracks] = useState();
     const [isSelected, setIsSelected] = useState(false);
+    const [isLiked, setIsLiked] = useState(false);
+
     const currentPlaylistId = useSelector(
         (state) => state.currentPlaylist.playlistId
     );
     const accessToken = useSelector((state) => state.accessToken.accessToken);
+    const addedSongStatus = useSelector((state) => state.addingSong.addingSong);
 
     useEffect(() => {
         if (isSelected) {
             addPlaylistHandler();
+            dispatch(
+                setAddStatus({
+                    addingSong: addedSongStatus + 1,
+                })
+            );
         } else {
             setAddedTracks("");
         }
     }, [isSelected]);
 
     const addPlaylistHandler = async () => {
-        console.log("here");
         try {
-            const response = await axios({
+            await axios({
                 method: "post",
                 url: `https://api.spotify.com/v1/playlists/${currentPlaylistId}/tracks`,
                 data: {
@@ -47,8 +56,6 @@ const Tracks = ({
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
             });
-
-            console.log(response);
         } catch (error) {
             console.error(error);
         }
@@ -59,9 +66,9 @@ const Tracks = ({
             return (
                 <div
                     className={styles.trackLike}
-                    onClick={() => setIsSelected(isSelected ? false : true)}
+                    onClick={() => setIsLiked(true)}
                 >
-                    {isSelected ? (
+                    {isLiked ? (
                         <AiFillHeart size={20} color="red" />
                     ) : (
                         <BiHeart size={20} />

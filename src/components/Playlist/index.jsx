@@ -18,7 +18,7 @@ const Playlist = () => {
 
     dispatch(setPlaylistId({ playlistId }));
     const accessToken = useSelector((state) => state.accessToken.accessToken);
-
+    const addedSongStatus = useSelector((state) => state.addingSong.addingSong);
     useEffect(() => {
         const getPlaylistDetail = () => {
             try {
@@ -29,7 +29,6 @@ const Playlist = () => {
                         },
                     })
                     .then((response) => {
-                        console.log(response.data.images);
                         setPlaylistDetail(
                             <>
                                 <img
@@ -94,7 +93,7 @@ const Playlist = () => {
         };
         getPlaylistItem();
         getPlaylistDetail();
-    }, []);
+    }, [addedSongStatus]);
 
     return (
         <div className={style.playlistContainer}>

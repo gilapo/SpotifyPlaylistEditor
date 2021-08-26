@@ -23,11 +23,10 @@ const SearchBar = ({ action }) => {
                 );
 
                 const resultContainer = result.data.tracks.items;
-                console.log(resultContainer);
                 setSearchresult(
-                    resultContainer.map((result) => (
+                    resultContainer.map((result, index) => (
                         <Tracks
-                            key={result.id}
+                            key={index}
                             id={result.id}
                             title={result.name}
                             artist={result.artists[0].name}
@@ -35,6 +34,7 @@ const SearchBar = ({ action }) => {
                             duration={miliSecondToMinutes(result.duration_ms)}
                             album={result.album.name}
                             action={action}
+                            index={index}
                         />
                     ))
                 );

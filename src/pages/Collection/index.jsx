@@ -3,13 +3,12 @@ import style from "./style.module.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { CustomCard } from "../../custom-ui-component";
-import { SearchBar } from "../../components";
-import { actions } from "../../utils/actionUtils";
 import { useHistory } from "react-router";
 import { BiPlus } from "react-icons/bi";
-import { IoClose } from "react-icons/io5";
+// import { IoClose } from "react-icons/io5";
 const Collection = () => {
     const [openForm, setOpenForm] = useState(false);
+    const [alert, setAlert] = useState(false);
     const [playlistData, setPlaylistData] = useState("");
     const [form, setForm] = useState({
         title: "",
@@ -58,23 +57,28 @@ const Collection = () => {
 
     const CreatePlaylist = async (event) => {
         event.preventDefault();
-        try {
-            const result = await axios({
-                method: "post",
-                url: `https://api.spotify.com/v1/users/${userId}/playlists`,
-                data: {
-                    name: form.title,
-                    description: form.description,
-                    public: false,
-                    collaborative: false,
-                },
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            });
-            console.log(result);
-        } catch (error) {
-            console.error(error);
+        if (form.title.length >= 10 && form.description.length >= 20) {
+            try {
+                const result = await axios({
+                    method: "post",
+                    url: `https://api.spotify.com/v1/users/${userId}/playlists`,
+                    data: {
+                        name: form.title,
+                        description: form.description,
+                        public: false,
+                        collaborative: false,
+                    },
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                });
+                console.log(result);
+            } catch (error) {
+                console.error(error);
+            }
+            setAlert(false);
+        } else {
+            setAlert(true);
         }
     };
 
@@ -93,14 +97,10 @@ const Collection = () => {
             </div>
             {openForm ? (
                 <div className={style.formSection}>
-                    <button
-                        onClick={() => {
-                            setOpenForm(false);
-                        }}
+                    <form
+                        className={style.formPlaylist}
+                        onSubmit={CreatePlaylist}
                     >
-                        <IoClose />
-                    </button>
-                    <form>
                         <label htmlFor="title">Playlist Title</label>
                         <input
                             name="title"
@@ -109,23 +109,39 @@ const Collection = () => {
                             value={form.title}
                             onChange={handleInput}
                         />
+                        {alert ? (
+                            <p>Judul Harus Lebih dari 10 Karakter</p>
+                        ) : null}
+
                         <label htmlFor="description">
                             Playlist Description
                         </label>
-                        <textarea
+                        <input
                             name="description"
-                            cols="30"
-                            rows="10"
                             placeholder="playlist description"
                             value={form.description}
                             onChange={handleInput}
-                        ></textarea>
-                        <button onClick={CreatePlaylist}>send</button>
-                        <button>cancel</button>
+                        />
+                        {alert ? (
+                            <p>Deskripsi Harus Lebih dari 20 Karakter</p>
+                        ) : null}
+                        <div className={style.buttonSection}>
+                            <button
+                                className={style.cancelBtn}
+                                onClick={() => {
+                                    setOpenForm(false);
+                                }}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className={style.sendBtn}
+                                onClick={CreatePlaylist}
+                            >
+                                Send
+                            </button>
+                        </div>
                     </form>
-                    <div className={style.search_section}>
-                        <SearchBar action={actions.add} />
-                    </div>
                 </div>
             ) : null}
             <div className={style.playlistSection}>{playlistData}</div>

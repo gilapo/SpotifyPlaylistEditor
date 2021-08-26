@@ -38,14 +38,20 @@ const Navbar = () => {
                 console.error(err);
             }
         };
+
+        getUserData();
+    }, [accessToken, dispatch]);
+
+    useEffect(() => {
         const timeOut = () => {
             setTimeout(() => {
-                logoutHandler();
+                localStorage.clear();
+                dispatch(logout());
             }, expireTime);
         };
-        getUserData();
         timeOut();
-    }, [accessToken, dispatch]);
+    });
+
     const logoutHandler = () => {
         localStorage.clear();
         dispatch(logout());

@@ -5,7 +5,7 @@ import { defaultImage } from "../../assets";
 type Card = {
     image: string;
     title: string;
-    description: string;
+    description?: string;
     goDetail: (id: string) => {};
     id: string;
 };
@@ -29,11 +29,13 @@ const CustomCard: React.FunctionComponent<Card> = ({
                 <h3 className={style.playlistTitle}>
                     {title.length >= 10 ? `${title.slice(0, 10)}...` : title}
                 </h3>
-                <p className={style.playlistDescription}>
-                    {description.length >= 10
-                        ? `${description.slice(0, 20)}...`
-                        : description}
-                </p>
+                {description ? (
+                    <p className={style.playlistDescription}>
+                        {description.length >= 10
+                            ? `${description.slice(0, 20)}...`
+                            : description}
+                    </p>
+                ) : null}
             </div>
         </div>
     );

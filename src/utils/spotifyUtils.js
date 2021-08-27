@@ -9,6 +9,7 @@ const spotifyUtils = {
     authorizeClientId: clientId,
     authorizeEndpoint: "https://accounts.spotify.com/authorize",
     authorizeRedirectUrl: "https://spotify-clone-olive.vercel.app/login",
+    // authorizeRedirectUrl: "http://localhost:3000/login",
     authorizeScopesUrlParams: scopes.join(spaceDelimiter),
 };
 

@@ -62,6 +62,7 @@ const Login = ({ authStatus }) => {
             <div className={style.buttonContainer}>
                 <div className={style.aplicationIcon}>
                     {/* <img src={logo} alt="" className={style.logoIcon} /> */}
+
                     <p>
                         PLAYLIST <span>&trade;</span>
                     </p>

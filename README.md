@@ -1,3 +1,6 @@
+# Generasi Gigih (by YABB of Gojek) front-end Homework
+spotify playlist editor created using react js and spotify API
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
